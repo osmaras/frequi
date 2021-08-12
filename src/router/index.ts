@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: './',
     name: 'Home',
     component: Home,
     meta: {
@@ -17,37 +17,37 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/trade',
+    path: './trade',
     name: 'Freqtrade Trading',
     component: () => import(/* webpackChunkName: "trade" */ '@/views/Trading.vue'),
   },
   {
-    path: '/graph',
+    path: './graph',
     name: 'Freqtrade Graph',
     component: () => import(/* webpackChunkName: "graph" */ '@/views/Graphs.vue'),
   },
   {
-    path: '/logs',
+    path: './logs',
     name: 'Freqtrade Logs',
     component: () => import(/* webpackChunkName: "graph" */ '@/views/LogView.vue'),
   },
   {
-    path: '/backtest',
+    path: './backtest',
     name: 'Freqtrade Backtest',
     component: () => import(/* webpackChunkName: "backtest" */ '@/views/Backtesting.vue'),
   },
   {
-    path: '/dashboard',
+    path: './dashboard',
     name: 'Freqtrade Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
   },
   {
-    path: '/settings',
+    path: './settings',
     name: 'Freqtrade Settings',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Settings.vue'),
   },
   {
-    path: '/login',
+    path: './login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/LoginView.vue'),
     meta: {
@@ -70,12 +70,12 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.name === 'Login' && userService.loggedIn()) {
     // No login if already logged in
-    next({ path: '/' });
+    next({ path: './' });
   }
   if (!to.meta?.allowAnonymous && !userService.loggedIn()) {
     // Forward to login if login is required
     next({
-      path: '/login',
+      path: '/.login',
       query: { redirect: to.fullPath },
     });
   } else {
